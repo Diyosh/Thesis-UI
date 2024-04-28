@@ -34,7 +34,9 @@ const CustomNavbar = ({ user }) => {
           <Nav.Link as={Link} to="/Team" className="text-decoration-none text-white">
             Teams
             </Nav.Link>
-          <Nav.Link className="text-decoration-none text-white">Matches</Nav.Link>
+          <Nav.Link as={Link} to="/Matchup" className="text-decoration-none text-white">
+            Matches
+            </Nav.Link>
           <Nav.Link className="text-decoration-none text-white">Games</Nav.Link>
           <Nav.Link className="text-decoration-none text-white">Event Leaderboard</Nav.Link>
           <Nav.Link className="text-decoration-none text-white">Ranking</Nav.Link>

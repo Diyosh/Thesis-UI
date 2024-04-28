@@ -12,6 +12,8 @@ import Dashboard from './Components/Dashboard';
 import Login from './Components/Login';
 import User from './Components/User';
 import Event from './Components/Event';
+import Team from './Components/Team';
+import Matchup from './Components/Matchup';
 
 const App = () => {
   return (
@@ -25,6 +27,8 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/user" element={<User />} />
               <Route path="/event" element={<Event />} />
+              <Route path="/team" element={<Team />} />
+              <Route path="/matchup" element={<Matchup />} />
             </Routes>
           </Col>
         </Row>
