@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import './loginstyle.css';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -55,7 +56,7 @@ const Login = () => {
   <Row className="login-container">
     <Col md={6} xs={12} className="d-flex justify-content-center align-items-center">
       <div className={`login-box p-4 rounded shadow-lg ${theme === 'dark' ? 'bg-dark text-light' : ''}`}>
-        <h1 className={`text-center mb-4 ${theme === 'dark' ? 'text-light' : ''}`}>Welcome to SEMS</h1>
+        <h1 className={`text-center mb-4 ${theme === 'dark' ? 'text-light' : ''}`}>SEMS</h1>
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label className="mb-1">Username*</Form.Label>
@@ -71,18 +72,15 @@ const Login = () => {
             <Form.Check type="checkbox" label="Remember me" className="mb-2" />
             <a href="#" className="text-center d-block">Forgot password?</a>
           </Form.Group>
-
           <Button variant="primary" className="w-100 mb-3" onClick={handleLogin}>
             Sign in
           </Button>
         </Form>
         <div className="text-center">
-          Don't have an account? <a href="#">Sign Up</a>
-        </div>
-        <div className="text-center mt-3">
-          Copyright Your Website 2024.
+        Don't have an account? <Link to="/SignUp">Sign Up</Link>
         </div>
       </div>
+
     </Col>
   </Row>
   {/* Toggle button for light/dark mode */}
