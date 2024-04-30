@@ -50,10 +50,10 @@ const Login = () => {
 
   return (
     <Container fluid className={`p-0 ${theme === 'dark' ? 'bg-dark text-light' : ''}`}>
-  <Row noGutters className="vh-100 d-flex justify-content-center align-items-center">
+  <Row className="vh-100 d-flex justify-content-center align-items-center no-gutters">
     <Col md={6} xs={12} className="d-flex justify-content-center align-items-center">
       <div className={`login-box p-4 rounded shadow-lg ${theme === 'dark' ? 'bg-dark text-light' : ''}`}>
-        <h1 className={`text-center mb-4 ${theme === 'dark' ? 'text-light' : ''}`}>Welcome to SEEMS</h1>
+        <h1 className={`text-center mb-4 ${theme === 'dark' ? 'text-light' : ''}`}>Welcome to SEMS</h1>
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label className="mb-1">Username*</Form.Label>
@@ -67,7 +67,7 @@ const Login = () => {
 
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check type="checkbox" label="Remember me" className="mb-2" />
-            <a href="#" className="float-end">Forgot password?</a>
+            <a href="#" className="text-center d-block">Forgot password?</a>
           </Form.Group>
 
           <Button variant="primary" className="w-100 mb-3" onClick={handleLogin}>

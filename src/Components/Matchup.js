@@ -12,6 +12,7 @@ const Matchups = ({ handleLogout }) => {
   const [showModal, setShowModal] = useState(false);
   const [eventID, setEventID] = useState('');
   const [numGames, setNumGames] = useState('');
+  const [teams, setTeams] = useState([]); // State to hold teams data
   const token = JSON.parse(localStorage.getItem('token')).data.token;
 
   const headers = {
@@ -21,6 +22,7 @@ const Matchups = ({ handleLogout }) => {
 
   useEffect(() => {
     fetchMatchups();
+    fetchTeams(); // Fetch teams data
   }, []);
 
   const fetchMatchups = async () => {
@@ -29,6 +31,15 @@ const Matchups = ({ handleLogout }) => {
       setMatchups(response.data);
     } catch (error) {
       console.error('Error fetching matchups:', error);
+    }
+  };
+
+  const fetchTeams = async () => {
+    try {
+      const response = await axios.get('https://ncf-intramurals-system.onrender.com/api/teams', { headers });
+      setTeams(response.data);
+    } catch (error) {
+      console.error('Error fetching teams:', error);
     }
   };
 
@@ -47,7 +58,7 @@ const Matchups = ({ handleLogout }) => {
 
     if (isConfirm) {
       try {
-        await axios.delete(`https://ncf-intramurals-system.onrender.com/api/matchups/${matchupId}`, { headers });
+        await axios.delete('https:ncf-intramurals-system.onrender.com/api/matchups/${matchupId}', { headers });
         Swal.fire({
           icon: 'success',
           text: 'Matchup deleted successfully!',
@@ -94,6 +105,12 @@ const Matchups = ({ handleLogout }) => {
     setNumGames('');
   };
 
+  // Function to get team name by team ID
+  const getTeamCode = (teamId) => {
+    const team = teams.find(team => team.TeamID === teamId);
+    return team ? team.TeamCode : '';
+  };
+
   return (
     <>
       <CustomNavbar handleLogout={handleLogout} />
@@ -112,7 +129,7 @@ const Matchups = ({ handleLogout }) => {
               <th>Team 1 </th>
               <th>Team 2 </th>
               <th>NumGames</th>
-              <th>Winner Team ID</th>
+              <th>Winner Team</th> {/* Changed from "Winner Team ID" */}
               <th>Action</th>
             </tr>
           </thead>
@@ -124,7 +141,7 @@ const Matchups = ({ handleLogout }) => {
                 <td>{matchup.Team1Code}</td>
                 <td>{matchup.Team2Code}</td>
                 <td>{matchup.NumGames}</td>
-                <td>{matchup.WinnerTeamID}</td>
+                <td>{getTeamCode(matchup.WinnerTeamID)}</td> {/* Display winner team name */}
                 <td>
                   <Button variant="danger" onClick={() => deleteMatchup(matchup.MatchupID)}>
                     <BsTrash />

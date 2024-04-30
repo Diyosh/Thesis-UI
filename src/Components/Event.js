@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CustomNavbar from './Navbar';
+import './eventStyle.css';
 
 const Event = ({ handleLogout }) => {
   const [events, setEvents] = useState([]);
@@ -212,7 +213,7 @@ const Event = ({ handleLogout }) => {
   };
 
   return (
-    <>
+    <div className="event-container">
       <CustomNavbar user={user} handleLogout={handleLogout} />
       <div className="container">
         <br />
@@ -221,27 +222,27 @@ const Event = ({ handleLogout }) => {
             <BsPlus size="1.5em" />
           </Button>
         </div>
-        <Table striped bordered hover>
+        <Table className='event-table'>
           <thead>
             <tr>
-              <th>Event ID</th>
-              <th>Event Name</th>
-              <th>Event Date</th>
-              <th>Location</th>
-              <th>Max Students Per Dept</th>
-              <th>Category</th>
-              <th>Action</th>
+              <th className="event-thead-item">Event ID</th>
+              <th className="event-thead-item">Event Name</th>
+              <th className="event-thead-item">Event Date</th>
+              <th className="event-thead-item">Location</th>
+              <th className="event-thead-item">Max Students Per Dept</th>
+              <th className="event-thead-item">Category</th>
+              <th className="event-thead-item">Action</th>
             </tr>
           </thead>
           <tbody>
             {events.length > 0 && events.slice(0, 10).map((event, key) => (
               <tr key={key}>
-                <td>{event.EventID}</td>
-                <td>{event.EventName}</td>
-                <td>{event.EventDate}</td>
-                <td>{event.Location}</td>
-                <td>{event.MaxStudentsPerDept}</td>
-                <td>{categories.map((category) => {
+                <td className="event-td-user">{event.EventID}</td>
+                <td className="event-td-user">{event.EventName}</td>
+                <td className="event-td-user">{event.EventDate}</td>
+                <td className="event-td-user">{event.Location}</td>
+                <td className="event-td-user">{event.MaxStudentsPerDept}</td>
+                <td className="event-td-user">{categories.map((category) => {
                     if (category.CategoryID === event.CategoryID) {
                         return category.CategoryName;
                     }
@@ -261,48 +262,45 @@ const Event = ({ handleLogout }) => {
           </tbody>
         </Table>
         <Modal show={show} onHide={handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>{selectedEvent ? 'Update Event' : 'Create Event'}</Modal.Title>
+        <Modal.Header closeButton style={{ fontSize: '10px' }}>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="modal-event-body">
+          <h3 className="Modal-event">
+              {selectedEvent ? 'Update Event' : 'Create Event'}
+            </h3>
             <Form onSubmit={selectedEvent ? updateEvent : createEvent}>
               <Row>
                 <Col>
                   <Form.Group controlId="EventName">
-                    <Form.Label>Event Name</Form.Label>
-                    <Form.Control type="text" value={EventName} onChange={(event) => { setEventName(event.target.value) }} />
+                    <Form.Label className="modal-event-label">Event Name</Form.Label>
+                    <Form.Control className="modal-event-control" type="text" value={EventName} onChange={(event) => { setEventName(event.target.value) }} />
                   </Form.Group>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <Form.Group controlId="EventDate">
-                    <Form.Label>Event Date</Form.Label>
-                    <Form.Control type="date" value={EventDate} onChange={(event) => { setEventDate(event.target.value) }} />
+                    <Form.Label className="modal-event-label">Event Date</Form.Label>
+                    <Form.Control className="modal-event-control" type="date" value={EventDate} onChange={(event) => { setEventDate(event.target.value) }} />
                   </Form.Group>
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <Form.Group controlId="Location">
-                    <Form.Label>Location</Form.Label>
-                    <Form.Control type="text" value={Location} onChange={(event) => { setLocation(event.target.value) }} />
+                    <Form.Label className="modal-event-label">Location</Form.Label>
+                    <Form.Control className="modal-event-control"  type="text" value={Location} onChange={(event) => { setLocation(event.target.value) }} />
                   </Form.Group>
                 </Col>
               </Row>
-              <Row>
-                <Col>
+              <div className="event-max-cat">
                   <Form.Group controlId="MaxStudentsPerDept">
-                    <Form.Label>Max Students Per Dept</Form.Label>
-                    <Form.Control type="number" value={MaxStudentsPerDept} onChange={(event) => { setMaxStudentsPerDept(event.target.value) }} />
+                    <Form.Label className="modal-event-label">Max Students Per Dept</Form.Label>
+                    <Form.Control className="event-studDept"  type="number" value={MaxStudentsPerDept} onChange={(event) => { setMaxStudentsPerDept(event.target.value) }} />
                   </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
                   <Form.Group controlId="Category">
-                    <Form.Label>Category</Form.Label>
-                    <Form.Control as="select" value={CategoryID} onChange={(event) => { setCategoryID(event.target.value) }}>
+                    <Form.Label className="modal-event-label">Category</Form.Label>
+                    <Form.Control className="event-categ"  as="select" value={CategoryID} onChange={(event) => { setCategoryID(event.target.value) }}>
                       <option value="">Select Category</option>
                       {categories.map((category) => (
                         <option key={category.CategoryID} value={category.CategoryID}>
@@ -311,8 +309,7 @@ const Event = ({ handleLogout }) => {
                       ))}
                     </Form.Control>
                   </Form.Group>
-                </Col>
-              </Row>
+                </div>
               {!selectedEvent && (
                   <Button variant="primary" className="mt-2" onClick={handleShowCreateCategoryModal}>
                     Create Category
@@ -343,7 +340,7 @@ const Event = ({ handleLogout }) => {
           </Modal.Body>
         </Modal>
       </div>
-    </>
+    </div>
   );
 };
 

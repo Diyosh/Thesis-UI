@@ -14,13 +14,14 @@ import User from './Components/User';
 import Event from './Components/Event';
 import Team from './Components/Team';
 import Matchup from './Components/Matchup';
+import Games from './Components/Games';
 
 const App = () => {
   return (
     <Router>
       <Container>
         <Row>
-          <Col md={12}>
+          <Col>
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
@@ -29,6 +30,8 @@ const App = () => {
               <Route path="/event" element={<Event />} />
               <Route path="/team" element={<Team />} />
               <Route path="/matchup" element={<Matchup />} />
+              <Route path="/games" element={<Games />} />
+              {/* <Route path="/ranking" element={<Ranking />} /> */}
             </Routes>
           </Col>
         </Row>

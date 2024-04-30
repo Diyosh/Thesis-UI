@@ -5,6 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
+import './navBarStyle.css';
 
 const CustomNavbar = ({ user }) => {
   const navigate = useNavigate();
@@ -21,9 +22,11 @@ const CustomNavbar = ({ user }) => {
   };
 
   return (
-    <Navbar bg="primary" data-bs-theme="dark">
+    <Navbar className="seemsNavBar">
       <Container>
-        <Navbar.Brand href="#home">SEEMS</Navbar.Brand>
+        <div>
+          <img src={require('../Assets/Image/new-sems.png')} className="seems-logo"/>
+        </div>
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/User" className="text-decoration-none text-white">
             Users
@@ -37,9 +40,12 @@ const CustomNavbar = ({ user }) => {
           <Nav.Link as={Link} to="/Matchup" className="text-decoration-none text-white">
             Matches
             </Nav.Link>
-          <Nav.Link className="text-decoration-none text-white">Games</Nav.Link>
-          <Nav.Link className="text-decoration-none text-white">Event Leaderboard</Nav.Link>
-          <Nav.Link className="text-decoration-none text-white">Ranking</Nav.Link>
+          <Nav.Link as={Link} to="/Games" className= "text-decoration-none text-white">
+            Games
+            </Nav.Link>
+            <Nav.Link as={Link} to="/Ranking" className= "text-decoration-none text-white">
+            Ranking
+            </Nav.Link>
         </Nav>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
