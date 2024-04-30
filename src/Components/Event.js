@@ -217,9 +217,14 @@ const Event = ({ handleLogout }) => {
       <CustomNavbar user={user} handleLogout={handleLogout} />
       <div className="container">
         <br />
-        <div className='col-12'>
-          <Button variant="success" className="mb-2 float-end btn-sm me-2" onClick={handleShow}>
-            <BsPlus size="1.5em" />
+        <div className="event-button-button">
+        {!selectedEvent && (
+                  <Button variant="primary" className="category-button-event" onClick={handleShowCreateCategoryModal}>
+                    Create Category
+                  </Button>
+              )}
+          <Button variant="success" className="create-event-button" onClick={handleShow}>
+            Create <br/> Event
           </Button>
         </div>
         <Table className='event-table'>
@@ -310,15 +315,12 @@ const Event = ({ handleLogout }) => {
                     </Form.Control>
                   </Form.Group>
                 </div>
-              {!selectedEvent && (
-                  <Button variant="primary" className="category-button-event" onClick={handleShowCreateCategoryModal}>
-                    Create Category
-                  </Button>
-              )}
                 <div className='mb-3'></div>
-              <Button variant="primary" type="submit" className="save-event-button" block="block">
-                {selectedEvent ? 'Update' : 'Save'}
-              </Button>
+              <div className="save-event-button" block="block">
+              <Button variant="primary" type="submit">
+                Save
+              </Button> 
+              </div>
             </Form>
           </Modal.Body>
         </Modal>
@@ -332,10 +334,11 @@ const Event = ({ handleLogout }) => {
                 <Form.Label>New Category Name</Form.Label>
                 <Form.Control type="text" value={newCategoryName} onChange={(e) => setNewCategoryName(e.target.value)} />
               </Form.Group>
-              <div className='mb-3'></div>
+              <div className="event-save-button">
               <Button variant="primary" type="submit">
                 Save
               </Button>
+              </div>
             </Form>
           </Modal.Body>
         </Modal>
