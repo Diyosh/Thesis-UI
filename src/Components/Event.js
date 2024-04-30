@@ -311,12 +311,12 @@ const Event = ({ handleLogout }) => {
                   </Form.Group>
                 </div>
               {!selectedEvent && (
-                  <Button variant="primary" className="mt-2" onClick={handleShowCreateCategoryModal}>
+                  <Button variant="primary" className="category-button-event" onClick={handleShowCreateCategoryModal}>
                     Create Category
                   </Button>
               )}
                 <div className='mb-3'></div>
-              <Button variant="primary" type="submit" className="mt-2" block="block">
+              <Button variant="primary" type="submit" className="save-event-button" block="block">
                 {selectedEvent ? 'Update' : 'Save'}
               </Button>
             </Form>
@@ -334,7 +334,7 @@ const Event = ({ handleLogout }) => {
               </Form.Group>
               <div className='mb-3'></div>
               <Button variant="primary" type="submit">
-                Create Category
+                Save
               </Button>
             </Form>
           </Modal.Body>

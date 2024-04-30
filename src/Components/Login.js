@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { FaSun, FaMoon } from 'react-icons/fa';
+import './loginstyle.css';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const Login = () => {
       });
 
       localStorage.setItem("token", JSON.stringify(response));
+      localStorage.setItem("username", Username); // Store username in session storage
       navigate("/dashboard");
 
     } catch (error) {
@@ -49,8 +51,8 @@ const Login = () => {
   };
 
   return (
-    <Container fluid className={`p-0 ${theme === 'dark' ? 'bg-dark text-light' : ''}`}>
-  <Row className="vh-100 d-flex justify-content-center align-items-center no-gutters">
+    <Container fluid className={`login-login ${theme === 'dark' ? 'bg-dark text-light' : ''}`}>
+  <Row className="login-container">
     <Col md={6} xs={12} className="d-flex justify-content-center align-items-center">
       <div className={`login-box p-4 rounded shadow-lg ${theme === 'dark' ? 'bg-dark text-light' : ''}`}>
         <h1 className={`text-center mb-4 ${theme === 'dark' ? 'text-light' : ''}`}>Welcome to SEMS</h1>

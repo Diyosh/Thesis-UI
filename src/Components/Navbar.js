@@ -6,9 +6,12 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
 import './navBarStyle.css';
+import UserDropdown from './UserDropdown';
+import { Dropdown } from 'react-bootstrap';
 
 const CustomNavbar = ({ user }) => {
   const navigate = useNavigate();
+  const username = localStorage.getItem("username"); // Retrieve username from session storage
 
   /* Logout Method */
   const handleLogout = () => {
@@ -49,10 +52,16 @@ const CustomNavbar = ({ user }) => {
         </Nav>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Welcome: {user ? user.id : 'id'} {user ? user.name : 'name'}
-            <Button variant="secondary" onClick={handleLogout}>Logout</Button>
-          </Navbar.Text>
+        <Dropdown>
+      <Dropdown.Toggle variant="success" id="dropdown-basic">
+        {username}
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+        <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+
+      </Dropdown.Menu>
+    </Dropdown>
         </Navbar.Collapse>
       </Container>
     </Navbar>

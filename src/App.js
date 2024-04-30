@@ -19,9 +19,6 @@ import Games from './Components/Games';
 const App = () => {
   return (
     <Router>
-      <Container>
-        <Row>
-          <Col>
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
@@ -33,9 +30,6 @@ const App = () => {
               <Route path="/games" element={<Games />} />
               {/* <Route path="/ranking" element={<Ranking />} /> */}
             </Routes>
-          </Col>
-        </Row>
-      </Container>
     </Router>
   );
 };
