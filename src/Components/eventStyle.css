@@ -92,3 +92,8 @@
     justify-content: end;
     margin-top: 10px;
 }
+.createrole-button-button{
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+}

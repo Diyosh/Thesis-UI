@@ -15,7 +15,7 @@ import Event from './Components/Event';
 import Team from './Components/Team';
 import Matchup from './Components/Matchup';
 import Games from './Components/Games';
-import SignUp from './Components/signup';
+// import SignUp from './Components/signup';
 
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
               <Route path="/team" element={<Team />} />
               <Route path="/matchup" element={<Matchup />} />
               <Route path="/games" element={<Games />} />
-              <Route path="/signup" component={<SignUp/>} />
+              {/* <Route path="/signup" component={<SignUp/>} /> */}
               {/* <Route path="/ranking" element={<Ranking />} /> */}
             </Routes>
     </Router>

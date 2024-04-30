@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CustomNavbar from './Navbar';
+import './userStyle.css';
 
 const User = ({ handleLogout }) => {
   const [users, setUsers] = useState([]);
@@ -198,13 +199,18 @@ const User = ({ handleLogout }) => {
 
   return (
     <>
+    <div className="user-container"></div>
       <CustomNavbar user={user} handleLogout={handleLogout} />
-      <div className="container">
-        <br />
-        <div className='col-12'>
-          <Button variant="success" className="mb-2 float-end btn-sm me-2" onClick={handleShow}>
-            <BsPlus size="1.5em" />
+        <br/>
+        <div className='user-button'>
+          <Button variant="success" className="create-user-button" onClick={handleShow}>
+            Create <br/> User
           </Button>
+          {!selectedUser && (
+                <Button variant="primary" className="create-role-button" onClick={handleShowCreateRoleModal} block="block">
+                  Create <br/> Role
+                </Button>
+              )}
         </div>
         <Table striped bordered hover>
           <thead>
@@ -212,6 +218,7 @@ const User = ({ handleLogout }) => {
               <th>ID</th>
               <th>Name</th>
               <th>Username</th>
+              <th>Role</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -221,6 +228,7 @@ const User = ({ handleLogout }) => {
                 <td>{row.UserID}</td>
                 <td>{row.Name}</td>
                 <td>{row.Username}</td>
+                <td>{row.RoleID}</td>
                 <td>
                   <Button variant="primary" className="me-2" onClick={() => handleUpdate(row)}>
                     <BsPencil />
@@ -276,15 +284,11 @@ const User = ({ handleLogout }) => {
                   </Form.Group>
                 </Col>
               </Row>
-              {!selectedUser && (
-                <Button variant="primary" className="mt-2" onClick={handleShowCreateRoleModal} block="block">
-                  Create Role
-                </Button>
-              )}
-              <div className='mb-3'></div>
-              <Button variant="primary" type="submit" className="mt-2" block="block">
-                {selectedUser ? 'Update' : 'Save'}
+                <div className="user-save-button">
+              <Button variant="primary" type="submit">
+                Save
               </Button>
+              </div>
             </Form>
           </Modal.Body>
         </Modal>
@@ -302,15 +306,14 @@ const User = ({ handleLogout }) => {
                 <Form.Label>New Role Name</Form.Label>
                 <Form.Control type="text" value={newRoleName} onChange={(e) => setNewRoleName(e.target.value)} />
               </Form.Group>
-              <div className='mb-3'></div>
-              <Button variant="primary" type="submit">
+              <div className='role-button'></div>
+              <Button variant="primary" className="createrole-save-button" type="submit">
                 Create Role
               </Button>
             </Form>
           </Modal.Body>
         </Modal>
-      </div>
-    </>
+      </>
   );
 };
 
